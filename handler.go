@@ -25,6 +25,7 @@ func (o Option) NewZapHandler() slog.Handler {
 	}
 
 	if o.Logger == nil {
+		// should be selected lazily ?
 		o.Logger = zap.L()
 	}
 
