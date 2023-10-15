@@ -84,14 +84,14 @@ slogzap.ErrorKeys = []string{"error", "err"}
 ```go
 import (
     slogzap "github.com/samber/slog-zap"
-	"go.uber.org/zap"
+    "go.uber.org/zap"
     "log/slog"
 )
 
 func main() {
-	zapLogger, _ := zap.NewProduction()
+    zapLogger, _ := zap.NewProduction()
 
-	logger := slog.New(slogzap.Option{Level: slog.LevelDebug, Logger: zapLogger}.NewZapHandler())
+    logger := slog.New(slogzap.Option{Level: slog.LevelDebug, Logger: zapLogger}.NewZapHandler())
     logger = logger.
         With("environment", "dev").
         With("release", "v1.0.0")
