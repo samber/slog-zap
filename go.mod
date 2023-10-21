@@ -1,4 +1,4 @@
-module github.com/samber/slog-zap
+module github.com/samber/slog-zap/v2
 
 go 1.21
 

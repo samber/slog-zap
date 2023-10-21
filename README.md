@@ -43,16 +43,16 @@ A [zap](https://github.com/sirupsen/zap) Handler for [slog](https://pkg.go.dev/l
 ## 🚀 Install
 
 ```sh
-go get github.com/samber/slog-zap
+go get github.com/samber/slog-zap/v2
 ```
 
 **Compatibility**: go >= 1.21
 
-No breaking changes will be made to exported APIs before v2.0.0.
+No breaking changes will be made to exported APIs before v3.0.0.
 
 ## 💡 Usage
 
-GoDoc: [https://pkg.go.dev/github.com/samber/slog-zap](https://pkg.go.dev/github.com/samber/slog-zap)
+GoDoc: [https://pkg.go.dev/github.com/samber/slog-zap/v2](https://pkg.go.dev/github.com/samber/slog-zap/v2)
 
 ### Handler options
 
@@ -84,7 +84,7 @@ slogzap.ErrorKeys = []string{"error", "err"}
 
 ```go
 import (
-    slogzap "github.com/samber/slog-zap"
+    slogzap "github.com/samber/slog-zap/v2"
     "go.uber.org/zap"
     "log/slog"
 )

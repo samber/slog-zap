@@ -6,7 +6,7 @@ import (
 
 	"log/slog"
 
-	slogzap "github.com/samber/slog-zap"
+	slogzap "github.com/samber/slog-zap/v2"
 	"go.uber.org/zap"
 )
 
