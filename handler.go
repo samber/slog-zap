@@ -59,7 +59,7 @@ func (h *ZapHandler) Handle(ctx context.Context, record slog.Record) error {
 		converter = h.option.Converter
 	}
 
-	level := levelMap[record.Level]
+	level := LogLevels[record.Level]
 	fields := converter(h.option.AddSource, h.option.ReplaceAttr, h.attrs, h.groups, &record)
 
 	h.option.Logger.Log(level, record.Message, fields...)
