@@ -78,7 +78,7 @@ Other global parameters:
 ```go
 slogzap.SourceKey = "source"
 slogzap.ErrorKeys = []string{"error", "err"}
-slogzap.LogLevels = map[slog.Level]zerolog.Level{...}
+slogzap.LogLevels = map[slog.Level]zapcore.Level{...}
 ```
 
 ### Example
