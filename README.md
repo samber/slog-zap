@@ -10,7 +10,7 @@
 [![Contributors](https://img.shields.io/github/contributors/samber/slog-zap)](https://github.com/samber/slog-zap/graphs/contributors)
 [![License](https://img.shields.io/github/license/samber/slog-zap)](./LICENSE)
 
-A [zap](https://github.com/sirupsen/zap) Handler for [slog](https://pkg.go.dev/log/slog) Go library.
+A [zap](https://github.com/uber-go/zap) Handler for [slog](https://pkg.go.dev/log/slog) Go library.
 
 **See also:**
 
