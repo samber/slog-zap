@@ -2,11 +2,13 @@ package slogzap
 
 import (
 	"context"
+	"runtime"
 
 	"log/slog"
 
 	slogcommon "github.com/samber/slog-common"
 	"go.uber.org/zap"
+	"go.uber.org/zap/zapcore"
 )
 
 type Option struct {
@@ -62,7 +64,21 @@ func (h *ZapHandler) Handle(ctx context.Context, record slog.Record) error {
 	level := LogLevels[record.Level]
 	fields := converter(h.option.AddSource, h.option.ReplaceAttr, h.attrs, h.groups, &record)
 
-	h.option.Logger.Log(level, record.Message, fields...)
+	checked := h.option.Logger.Check(level, record.Message)
+	if checked != nil {
+		if h.option.AddSource {
+			frame, _ := runtime.CallersFrames([]uintptr{record.PC}).Next()
+			checked.Caller = zapcore.NewEntryCaller(0, frame.File, frame.Line, true)
+			checked.Stack = "" //@TODO
+		} else {
+			checked.Caller = zapcore.EntryCaller{}
+			checked.Stack = ""
+		}
+		checked.Write(fields...)
+		return nil
+	} else {
+		h.option.Logger.Log(level, record.Message, fields...)
+	}
 
 	return nil
 }

@@ -19,9 +19,9 @@ func DefaultConverter(addSource bool, replaceAttr func(groups []string, a slog.A
 
 	// developer formatters
 	attrs = slogcommon.ReplaceError(attrs, ErrorKeys...)
-	if addSource {
-		attrs = append(attrs, slogcommon.Source(SourceKey, record))
-	}
+	// if addSource {
+	// 	attrs = append(attrs, slogcommon.Source(SourceKey, record))
+	// }
 	attrs = slogcommon.ReplaceAttrs(replaceAttr, []string{}, attrs...)
 
 	// handler formatter
