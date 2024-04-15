@@ -3,7 +3,7 @@ module github.com/samber/slog-zap/v2
 go 1.21
 
 require (
-	github.com/samber/slog-common v0.15.1
+	github.com/samber/slog-common v0.15.2
 	go.uber.org/goleak v1.2.1
 	go.uber.org/zap v1.26.0
 )
