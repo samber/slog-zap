@@ -17,6 +17,8 @@ type Option struct {
 
 	// optional: zap logger (default: zap.L())
 	Logger *zap.Logger
+	// optional: fetch attributes from context
+	AttrFromContext []func(ctx context.Context) []slog.Attr
 
 	// optional: customize json payload builder
 	Converter Converter
@@ -34,6 +36,10 @@ func (o Option) NewZapHandler() slog.Handler {
 	if o.Logger == nil {
 		// should be selected lazily ?
 		o.Logger = zap.L()
+	}
+
+	if o.AttrFromContext == nil {
+		o.AttrFromContext = []func(ctx context.Context) []slog.Attr{}
 	}
 
 	return &ZapHandler{
@@ -62,7 +68,8 @@ func (h *ZapHandler) Handle(ctx context.Context, record slog.Record) error {
 	}
 
 	level := LogLevels[record.Level]
-	fields := converter(h.option.AddSource, h.option.ReplaceAttr, h.attrs, h.groups, &record)
+	fromContext := slogcommon.ContextExtractor(ctx, h.option.AttrFromContext)
+	fields := converter(h.option.AddSource, h.option.ReplaceAttr, append(h.attrs, fromContext...), h.groups, &record)
 
 	checked := h.option.Logger.Check(level, record.Message)
 	if checked != nil {
