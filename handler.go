@@ -99,6 +99,11 @@ func (h *ZapHandler) WithAttrs(attrs []slog.Attr) slog.Handler {
 }
 
 func (h *ZapHandler) WithGroup(name string) slog.Handler {
+	// https://cs.opensource.google/go/x/exp/+/46b07846:slog/handler.go;l=247
+	if name == "" {
+		return h
+	}
+
 	return &ZapHandler{
 		option: h.option,
 		attrs:  h.attrs,
