@@ -4,7 +4,7 @@ go 1.21
 
 require (
 	github.com/samber/slog-common v0.17.1
-	go.uber.org/goleak v1.2.1
+	go.uber.org/goleak v1.3.0
 	go.uber.org/zap v1.26.0
 )
 
