@@ -88,20 +88,20 @@ GoDoc: [https://pkg.go.dev/github.com/samber/slog-zap/v2](https://pkg.go.dev/git
 
 ```go
 type Option struct {
-	// log level (default: debug)
-	Level slog.Leveler
+  // log level (default: debug)
+  Level slog.Leveler
 
-	// optional: zap logger (default: zap.L())
-	Logger *zap.Logger
+  // optional: zap logger (default: zap.L())
+  Logger *zap.Logger
 
-	// optional: customize json payload builder
-	Converter Converter
-    // optional: fetch attributes from context
-    AttrFromContext []func(ctx context.Context) []slog.Attr
+  // optional: customize json payload builder
+  Converter Converter
+  // optional: fetch attributes from context
+  AttrFromContext []func(ctx context.Context) []slog.Attr
 
-	// optional: see slog.HandlerOptions
-	AddSource   bool
-	ReplaceAttr func(groups []string, a slog.Attr) slog.Attr
+  // optional: see slog.HandlerOptions
+  AddSource   bool
+  ReplaceAttr func(groups []string, a slog.Attr) slog.Attr
 }
 ```
 
