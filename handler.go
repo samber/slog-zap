@@ -26,8 +26,6 @@ type Option struct {
 	// optional: see slog.HandlerOptions
 	AddSource   bool
 	ReplaceAttr func(groups []string, a slog.Attr) slog.Attr
-
-	RecordTime bool
 }
 
 func (o Option) NewZapHandler() slog.Handler {
@@ -83,9 +81,10 @@ func (h *ZapHandler) Handle(ctx context.Context, record slog.Record) error {
 			checked.Caller = zapcore.EntryCaller{}
 			checked.Stack = ""
 		}
-		if h.option.RecordTime {
-			checked.Time = record.Time
-		}
+
+		// use slog record time
+		checked.Time = record.Time
+
 		checked.Write(fields...)
 		return nil
 	} else {
