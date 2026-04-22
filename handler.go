@@ -81,6 +81,10 @@ func (h *ZapHandler) Handle(ctx context.Context, record slog.Record) error {
 			checked.Caller = zapcore.EntryCaller{}
 			checked.Stack = ""
 		}
+
+		// use slog record time
+		checked.Time = record.Time
+
 		checked.Write(fields...)
 		return nil
 	} else {
