@@ -3,6 +3,7 @@ package slogzap
 import (
 	"context"
 	"runtime"
+	"slices"
 
 	"log/slog"
 
@@ -111,6 +112,6 @@ func (h *ZapHandler) WithGroup(name string) slog.Handler {
 	return &ZapHandler{
 		option: h.option,
 		attrs:  h.attrs,
-		groups: append(h.groups, name),
+		groups: append(slices.Clip(h.groups), name),
 	}
 }
